@@ -1,5 +1,5 @@
 Name:		youtube-dl
-Version:	2012.01.08b
+Version:	2012.02.27
 Release:	%mkrel 1
 Summary:	Small command-line program to download videos from YouTube
 License:	Public Domain and GPLv2
@@ -31,7 +31,6 @@ Small command-line program to download videos from YouTube.
 %__rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1.*
 
@@ -39,7 +38,11 @@ Small command-line program to download videos from YouTube.
 
 
 %changelog
-* Fri Jan 27 2012 Andrey Bondrov <abondrov@mandriva.org> 2012.01.08b-1mdv2012.0
+* Thu Mar 22 2012 Andrey Bondrov <abondrov@mandriva.org> 2012.02.27-1
++ Revision: 786045
+- New version 2012.02.27
+
+* Fri Jan 27 2012 Andrey Bondrov <abondrov@mandriva.org> 2012.01.08b-1
 + Revision: 769378
 - imported package youtube-dl
 
