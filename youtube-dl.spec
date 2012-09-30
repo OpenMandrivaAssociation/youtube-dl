@@ -1,6 +1,6 @@
 Name:		youtube-dl
-Version:	2012.01.08b
-Release:	%mkrel 1
+Version:	2012.09.27
+Release:	1
 Summary:	Small command-line program to download videos from YouTube
 License:	Public Domain and GPLv2
 Group:		Video
@@ -21,21 +21,15 @@ Small command-line program to download videos from YouTube.
 #nothing
 
 %install
-%__rm -rf %{buildroot}
 %__install -D -p -m 755 %{SOURCE0} %{buildroot}%{_bindir}/%{name}
 
 #man page by Rogerio Brito <rbrito@users.sf.net>, licensed under GPLv2 - from a Debian package
 %__install -D -p -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/%{name}.1.gz
 
-%clean
-%__rm -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1.*
-
-
 
 
 %changelog
