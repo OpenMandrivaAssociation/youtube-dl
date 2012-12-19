@@ -1,5 +1,5 @@
 Name:		youtube-dl
-Version:	2012.09.27
+Version:	2012.12.11
 Release:	1
 Summary:	Small command-line program to download videos from YouTube
 License:	Public Domain and GPLv2
@@ -31,9 +31,4 @@ Small command-line program to download videos from YouTube.
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1.*
 
-
-%changelog
-* Fri Jan 27 2012 Andrey Bondrov <abondrov@mandriva.org> 2012.01.08b-1mdv2012.0
-+ Revision: 769378
-- imported package youtube-dl
 
