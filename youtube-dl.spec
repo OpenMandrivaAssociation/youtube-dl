@@ -22,15 +22,11 @@ Small command-line program to download videos from YouTube.
 %build
 %make
 
-
 %install
 %makeinstall DESTDIR=%{buildroot} \
              PREFIX=%{_prefix} \
              MANDIR=%{_mandir} 
             
-
-%check
-#make test
 
 %files
 %doc LICENSE README.txt 
