@@ -1,6 +1,6 @@
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
-Version:	2014.09.25
+Version:	2014.10.18
 Release:	1
 License:	Public Domain and GPLv2+
 Group:		Video
@@ -33,8 +33,9 @@ Small command-line program to download videos from YouTube.
 #make test
 
 %files
-%doc LICENSE README.md
+%doc LICENSE README.txt 
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
+%{_datadir}/zsh/site-functions/_youtube-dl
 %config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
 %config(noreplace) %{_sysconfdir}/fish/completions/%{name}.fish
