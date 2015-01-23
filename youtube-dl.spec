@@ -12,7 +12,7 @@ BuildRequires:	pythonegg(setuptools)
 #for tests
 BuildRequires:	ffmpeg
 
-Requires:	python
+Requires:	python2
 Suggests:	ffmpeg
 
 BuildArch:	noarch
