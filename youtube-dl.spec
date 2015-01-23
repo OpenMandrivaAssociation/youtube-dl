@@ -1,31 +1,46 @@
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
-Version:	2013.08.08
+Version:	2015.01.16
 Release:	1
-License:	Public Domain and GPLv2
+License:	Public Domain and GPLv2+
 Group:		Video
 Url:		http://rg3.github.com/youtube-dl/
-Source0:	http://youtube-dl.org/downloads/%{version}/youtube-dl
-#man page from Debian by Rogerio Brito <rbrito@users.sf.net>, licensed under GPLv2
-Source1:	%{name}.1.gz
-BuildArch:	noarch
+Source0:	https://yt-dl.org/downloads/%{version}/%{name}-%{version}.tar.gz
+
+BuildRequires:  pythonegg(nose)
+BuildRequires:	pythonegg(setuptools)
+#for tests
+BuildRequires:	ffmpeg
+
 Requires:	python
+Suggests:	ffmpeg
+
+BuildArch:	noarch
 
 %description
 Small command-line program to download videos from YouTube.
 
+
 %prep
-#nothing
+%setup -qn %{name}
 
 %build
-#nothing
+%make
+
 
 %install
-install -D -p -m 755 %{SOURCE0} %{buildroot}%{_bindir}/%{name}
+%makeinstall DESTDIR=%{buildroot} \
+             PREFIX=%{_prefix} \
+             MANDIR=%{_mandir} 
+            
 
-#man page by Rogerio Brito <rbrito@users.sf.net>, licensed under GPLv2 - from a Debian package
-install -D -p -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/%{name}.1.gz
+%check
+#make test
 
 %files
+%doc LICENSE README.txt 
 %{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1.*
+%{_mandir}/man1/%{name}.1*
+%{_datadir}/zsh/site-functions/_youtube-dl
+%config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
+%config(noreplace) %{_sysconfdir}/fish/completions/%{name}.fish
