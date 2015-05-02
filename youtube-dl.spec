@@ -1,15 +1,21 @@
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
-Version:	2014.10.18
+Version:	2015.04.17
 Release:	1
 License:	Public Domain and GPLv2+
 Group:		Video
 Url:		http://rg3.github.com/youtube-dl/
-Source0:	https://yt-dl.org/downloads/%{version}/youtube-dl-%{version}.tar.gz
+Source0:	https://yt-dl.org/downloads/%{version}/%{name}-%{version}.tar.gz
+
 
 BuildRequires:  pythonegg(nose)
 BuildRequires:	pythonegg(setuptools)
+#for tests
+BuildRequires:	ffmpeg
+
 Requires:	python
+Suggests:	ffmpeg
+
 BuildArch:	noarch
 
 %description
@@ -22,11 +28,15 @@ Small command-line program to download videos from YouTube.
 %build
 %make
 
+
 %install
 %makeinstall DESTDIR=%{buildroot} \
              PREFIX=%{_prefix} \
              MANDIR=%{_mandir} 
             
+
+%check
+#make test
 
 %files
 %doc LICENSE README.txt 
