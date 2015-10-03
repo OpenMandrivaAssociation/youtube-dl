@@ -6,8 +6,8 @@ License:	Public Domain and GPLv2+
 Group:		Video
 Url:		http://rg3.github.com/youtube-dl/
 Source0:	https://yt-dl.org/downloads/%{version}/%{name}-%{version}.tar.gz
-BuildRequires:	pythonegg(nose)
-BuildRequires:	pythonegg(setuptools)
+BuildRequires:	python2egg(nose)
+BuildRequires:	python2egg(setuptools)
 #for tests
 BuildRequires:	ffmpeg
 
