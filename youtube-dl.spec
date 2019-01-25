@@ -1,6 +1,6 @@
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
-Version:	2018.12.31
+Version:	2019.01.24
 Release:	1
 License:	Public Domain and GPLv2+
 Group:		Video
@@ -34,11 +34,11 @@ Small command-line program to download videos from YouTube and similar sites.
 
 %build
 #python ./setup.py
-%make
+%make_build
 
 
 %install
-%makeinstall DESTDIR=%{buildroot} \
+%make_install DESTDIR=%{buildroot} \
 	     PREFIX=%{_prefix} \
 	     MANDIR=%{_mandir} 
             
