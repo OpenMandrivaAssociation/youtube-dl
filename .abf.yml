@@ -1,5 +1,2 @@
-removed_sources:
-  youtube-dl-2017.03.10.tar.gz: 44453e71129e9df493d68ea8891491251abb0c75
-  youtube-dl-2018.05.26.tar.gz: 27c0fa3f758558f22d647b975c6ad786650c61e3
 sources:
-  youtube-dl-2019.08.13.tar.gz: 3adad451a733e05f79910d0627f394fe31e30464
+  youtube-dl-2019.09.28.tar.gz: 31385f76ac37d87d278d4d59e96c1e10cbf2942f
