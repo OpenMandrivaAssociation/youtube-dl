@@ -30,7 +30,7 @@ Small command-line program to download videos from YouTube and similar sites.
 #-----------------------------------------------------------------------------
 
 %prep
-%setup -qn %{name}-%{version}
+%setup -qn %{name}
 
 %build
 #python ./setup.py
