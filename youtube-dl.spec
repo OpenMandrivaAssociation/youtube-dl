@@ -1,6 +1,6 @@
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
-Version:	2019.10.22
+Version:	2019.11.05
 Release:	1
 License:	Public Domain and GPLv2+
 Group:		Video
@@ -12,7 +12,7 @@ BuildRequires:	python3egg(setuptools)
 BuildRequires:	ffmpeg
 
 Requires:	python
-Suggests:	ffmpeg
+Recommends:	ffmpeg
 
 BuildArch:	noarch
 
