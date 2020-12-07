@@ -1,6 +1,6 @@
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
-Version:	2020.12.05
+Version:	2020.12.07
 Release:	1
 License:	Public Domain and GPLv2+
 Group:		Video
