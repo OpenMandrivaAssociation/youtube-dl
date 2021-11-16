@@ -4,7 +4,7 @@ Version:	2021.06.06
 Release:	1
 License:	Public Domain and GPLv2+
 Group:		Video
-Url:		http://rg3.github.com/youtube-dl/
+Url:		https://ytdl-org.github.io/youtube-dl/index.html
 Source0:	https://yt-dl.org/downloads/%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	python3dist(nose)
 BuildRequires:	python3dist(setuptools)
@@ -20,7 +20,7 @@ BuildArch:	noarch
 Small command-line program to download videos from YouTube and similar sites.
 
 %files
-%doc LICENSE README.txt 
+%doc LICENSE README.txt
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 %{_datadir}/zsh/site-functions/_youtube-dl
@@ -36,12 +36,11 @@ Small command-line program to download videos from YouTube and similar sites.
 #python ./setup.py
 %make_build
 
-
 %install
-%make_install DESTDIR=%{buildroot} \
-	     PREFIX=%{_prefix} \
-	     MANDIR=%{_mandir} 
-            
+%make_install \
+	DESTDIR=%{buildroot} \
+	PREFIX=%{_prefix} \
+	MANDIR=%{_mandir}
 
 %check
 # This would need a huge amount of downloads.
