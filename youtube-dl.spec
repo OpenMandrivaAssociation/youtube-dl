@@ -7,12 +7,16 @@
 
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
-Version:	2021.12.17
-Release:	2
+# youtube-dl stopped making releases in 2021 -- the latest release
+# can't even talk to youtube as of February 2023.
+# So we either package a git snapshot or force people onto the
+# yt-dlp fork...
+Version:	2023.02.28
+Release:	1
 License:	Public Domain and GPLv2+
 Group:		Video
 Url:		https://ytdl-org.github.io/youtube-dl/index.html
-Source0:	https://yt-dl.org/downloads/%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/ytdl-org/youtube-dl/archive/refs/heads/master.tar.gz
 Patch0:		youtube-dl-2021.12.17-fix_python_setup.patch
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python3dist(nose)
@@ -36,19 +40,24 @@ Small command-line program to download videos from YouTube and similar sites.
 
 %files
 %license LICENSE
-%doc README.txt
+%doc README.md
 %{_bindir}/%{name}
 %{py_puresitedir}/youtube_dl
 %{py_puresitedir}/youtube_dl-*.*-info
-%{_mandir}/man1/%{name}.1*
-%{_datadir}/zsh/site-functions/_youtube-dl
-%config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
-%config(noreplace) %{_sysconfdir}/fish/completions/%{name}.fish
+%optional %{_mandir}/man1/%{name}.1*
+%optional %{_datadir}/zsh/site-functions/_youtube-dl
+%optional %config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
+%optional %config(noreplace) %{_sysconfdir}/fish/completions/%{name}.fish
 
 #-----------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{name}
+%autosetup -p1 -n %{name}-master
+# We currently don't have pandoc, so let's work around it,
+# missing docs is a nuisance, but not a showstopper given
+# the information can be found on the net
+sed -i -e 's,pandoc,true,g' Makefile
+sed -i -e '/install -m.*youtube-dl\.1/d' Makefile
 
 %build
 %if %{with python_module}
@@ -60,10 +69,6 @@ Small command-line program to download videos from YouTube and similar sites.
 %install
 %if %{with python_module}
 %{py_install}
-
-# fix name
-mv %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}{.bash-completion,}
-mv %{buildroot}%{_datadir}/zsh/site-functions/{youtube-dl.zsh,_youtube-dl}
 
 # remove unwanted
 rm -fr %{buildroot}%{_datadir}/doc/youtube_dl/
@@ -79,4 +84,3 @@ rm -fr %{buildroot}%{_datadir}/doc/youtube_dl/
 %if %{with tests}
 make test
 %endif
-
