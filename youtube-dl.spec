@@ -12,7 +12,7 @@ Name:		youtube-dl
 # So we either package a git snapshot or force people onto the
 # yt-dlp fork...
 Version:	2023.02.28
-Release:	1
+Release:	2
 License:	Public Domain and GPLv2+
 Group:		Video
 Url:		https://ytdl-org.github.io/youtube-dl/index.html
