@@ -1,9 +1,9 @@
-# (mandian) use python module instead of
-# one single zipped binary
+# (mandian)
+# use python module instead of one single zipped binary
 # - required by youtube-dl-pyqt -
-%bcond_without python_module
+%bcond python_module	1
 # enable testss would need a huge amount of downloads
-%bcond_with tests
+%bcond tests		0
 
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
@@ -11,19 +11,19 @@ Name:		youtube-dl
 # can't even talk to youtube as of February 2023.
 # So we either package a git snapshot or force people onto the
 # yt-dlp fork...
-Version:	2024.03.04
+Version:	2024.08.06
 Release:	1
 License:	Public Domain and GPLv2+
 Group:		Video
 Url:		https://ytdl-org.github.io/youtube-dl/index.html
-Source0:	https://github.com/ytdl-org/youtube-dl/archive/refs/heads/master.tar.gz
+Source0:	https://github.com/ytdl-org/youtube-dl/archive/refs/heads/master/%{name}-%{version}.tar.gz
 Patch0:		youtube-dl-2021.12.17-fix_python_setup.patch
 BuildRequires:	pkgconfig(python)
-BuildRequires:	python3dist(nose)
+BuildRequires:	python%{pyver}dist(nose)
 %if %{with python_module}
-BuildRequires:	python3dist(pip)
-BuildRequires:	python3dist(setuptools)
-BuildRequires:	python3dist(wheel)
+BuildRequires:	python%{pyver}dist(pip)
+BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(wheel)
 %endif
 # tests
 %if %{with tests}
@@ -43,10 +43,12 @@ Small command-line program to download videos from YouTube and similar sites.
 %doc README.md
 %{_bindir}/%{name}
 %{py_puresitedir}/youtube_dl
+%if %{with python_module}
 %{py_puresitedir}/youtube_dl-*.*-info
+%endif
 %optional %{_mandir}/man1/%{name}.1*
-%optional %{_datadir}/zsh/site-functions/_youtube-dl
-%optional %config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
+%optional %{_datadir}/zsh/site-functions/%{name}.zsh
+%optional %config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}.bash-completion
 %optional %config(noreplace) %{_sysconfdir}/fish/completions/%{name}.fish
 
 #-----------------------------------------------------------------------------
@@ -61,6 +63,7 @@ sed -i -e '/install -m.*youtube-dl\.1/d' Makefile
 
 %build
 %if %{with python_module}
+%make_build youtube-dl.1 youtube-dl.bash-completion youtube-dl.zsh youtube-dl.fish
 %{py_build}
 %else
 %make_build
@@ -84,3 +87,4 @@ rm -fr %{buildroot}%{_datadir}/doc/youtube_dl/
 %if %{with tests}
 make test
 %endif
+
