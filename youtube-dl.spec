@@ -29,6 +29,7 @@ BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	python%{pyver}dist(wheel)
 %endif
+BuildRequires:	make
 # tests
 %if %{with tests}
 BuildRequires:	ffmpeg
