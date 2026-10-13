@@ -12,7 +12,7 @@
 Summary:	Small command-line program to download videos from YouTube
 Name:		youtube-dl
 Version:	2025.11.26
-Release:	1
+Release:	2
 License:	Public Domain and GPLv2+
 Group:		Video
 Url:		https://ytdl-org.github.io/youtube-dl/index.html
@@ -22,7 +22,9 @@ Source0:	https://github.com/ytdl-org/ytdl-nightly/archive/%{version}/ytdl-nightl
 Source0:	https://github.com/ytdl-org/youtube-dl/archive/refs/heads/master/%{name}-%{version}.tar.gz
 %endif
 Patch0:		youtube-dl-2021.12.17-fix_python_setup.patch
-BuildRequires:	pkgconfig(python)
+# Python 3.15 removed distutils; setup.py imports distutils.spawn
+Patch1:		youtube-dl-2025.11.26-distutils.patch
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(nose)
 %if %{with python_module}
 BuildRequires:	python%{pyver}dist(pip)

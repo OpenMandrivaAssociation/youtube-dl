@@ -1,0 +1,11 @@
+--- a/setup.py
++++ b/setup.py
+@@ -10,6 +10,8 @@
+ try:
+     from setuptools import setup, Command
+     setuptools_available = True
++    import setuptools._distutils as _distutils
++    sys.modules.setdefault("distutils", _distutils)
+ except ImportError:
+     from distutils.core import setup, Command
+     setuptools_available = False
